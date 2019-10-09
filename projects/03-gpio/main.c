@@ -40,8 +40,10 @@ int main(void)
     GPIO_config_output(&DDRB, LED_PIN);
     //DDRB |= _BV(LED_PINgreen); 
     GPIO_config_output(&DDRB, LED_PINgreen);
-    DDRD &= ~_BV(button);
-    PORTD |= _BV(button);
+    //DDRD &= ~_BV(button);
+    GPIO_config_input_nopull(&DDRD,&PORTD,button);
+    //PORTD |= _BV(button);
+    GPIO_config_input_pullup(&DDRD,&PORTD,button);
 
     /* Turn LED off */
     //PORTB &= ~_BV(LED_PIN);         /* PORTB = PORTB and (0010 0000) */

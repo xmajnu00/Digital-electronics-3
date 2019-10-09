@@ -34,3 +34,19 @@ void GPIO_toggle(volatile uint8_t *reg_name,uint8_t pin_num)
     // Body of the  function
     *reg_name  ^= _BV(pin_num);
     } 
+ void GPIO_config_input_nopull(volatile uint8_t *ddr_name , volatile uint8_t *port_name, uint8_t pin_num)
+ {
+    
+    // Body of the  function
+    *ddr_name  &= ~_BV(pin_num);
+    *port_name  &= ~_BV(pin_num);
+
+    }   
+void GPIO_config_input_pullup(volatile uint8_t *ddr_name , volatile uint8_t *port_name,uint8_t pin_num)
+{
+    
+    // Body of the  function
+    *ddr_name  &= ~_BV(pin_num);
+    *port_name  |= _BV(pin_num);
+
+    } 
