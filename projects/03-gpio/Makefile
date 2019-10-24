@@ -23,7 +23,6 @@ ASSRC := $(wildcard *.S)
 SRCS += $(LIBRARY_DIR)/src/gpio.c
 
 
-
 ##
 ## You should not have to change anything below here
 ##

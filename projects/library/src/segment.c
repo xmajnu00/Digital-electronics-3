@@ -45,10 +45,10 @@ uint8_t segment_digit[] = {
     0b10100100,      // Digit 2
     0b10110000,      // Digit 3
     0b10011001,      // Digit 4
-    0b11001001,      // Digit 5
-                     // Digit 6
-                     // Digit 7
-                     // Digit 8  
+    0b10010010,      // Digit 5
+    0b10000010,      // Digit 6
+    0b11111000,      // Digit 7
+    0b10000000,      // Digit 8 
     0b10011000};     // Digit 9
 
 /* Active high position 0 to 3 */
@@ -59,8 +59,7 @@ uint8_t segment_position[] = {
     0b00000001};  // Position 3
 
 /* Functions ---------------------------------------------------------*/
-void SEG_putc(uint8_t digit,
-              uint8_t position)
+void SEG_putc(uint8_t digit, uint8_t position)
 {
     uint8_t i;
 
@@ -72,14 +71,14 @@ void SEG_putc(uint8_t digit,
     /* Put 1st byte to serial data */
     for (i = 0; i < 8; i++) {
         // TODO: Test and send 8 individual "digit" bits
-        GPIO_write(&PORTB, SEGMENT_DATA, ((digit & (7-i))>>(7-i)));
+        GPIO_write(&PORTB, SEGMENT_DATA, ((digit & _BV(7-i))>>(7-i)));
         SEG_toggle_clk();
     }
       
     /* Put 2nd byte to serial data */
     for (i = 0; i < 8; i++) {
-        // TODO: Test and send 8 individual "position" bits
-        GPIO_write(&PORTB, SEGMENT_DATA, ((position & (7-i))>>(7-i)));
+        // TODO: Test and send 8 individual "position"> bits
+        GPIO_write(&PORTB, SEGMENT_DATA, ((position & _BV(7-i))>>(7-i)));
         SEG_toggle_clk();
     }
 
