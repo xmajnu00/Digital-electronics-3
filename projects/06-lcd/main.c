@@ -51,20 +51,20 @@ int main(void)
     lcd_puts("Counter: ");   
     itoa(i , lcd_string , 10);
     lcd_puts(lcd_string);
-    itoa(i , lcd_string , 16);
+    /*itoa(i , lcd_string , 16);
     lcd_gotoxy(0,1);
     lcd_putc('$');
     lcd_puts(lcd_string);
     itoa(i , lcd_string , 2);
     lcd_gotoxy(6,1);
     lcd_puts("0b");
-    lcd_puts(lcd_string);
+    lcd_puts(lcd_string);*/
     // TODO: Display variable value in decimal, binary, and hexadecimal
 
     /* Timer1
      * TODO: Configure Timer1 clock source and enable overflow 
      *       interrupt */
-    TIM_config_prescaler(TIM1, TIM_PRESC_256);                //OBNOVOVACI
+    TIM_config_prescaler(TIM1, TIM_PRESC_64);       //OBNOVOVACI
     TIM_config_interrupt(TIM1, TIM_OVERFLOW_ENABLE);
 
     /* TODO: Design at least two user characters and store them in 
@@ -80,9 +80,29 @@ int main(void)
     }
 
     lcd_gotoxy(14,0);
-            lcd_putc (0x00);
-        lcd_putc (0x01);
+    lcd_putc (0x00);
+    lcd_putc (0x01);
+
+    itoa(i , lcd_string , 10);
+    lcd_gotoxy(0,1);  
+    lcd_putc(0xFF);
     
+    for (i=0;i<256; i++)
+    {
+        if (i==15) 
+        {
+        lcd_gotoxy(1,1);
+        }
+        if (i==31) 
+        {
+         lcd_gotoxy(2,1);
+        }
+    }      
+    
+
+
+    
+
     //lcd_init(LCD_DISP_ON_CURSOR_BLINK)
     // Enables interrupts by setting the global interrupt mask
     sei();
@@ -113,7 +133,7 @@ ISR(TIMER1_OVF_vect)
     lcd_gotoxy(9,0);
     lcd_puts(lcd_string);
 
-    itoa(i , lcd_string , 16);
+    /*itoa(i , lcd_string , 16);
     lcd_gotoxy(1,1);
     lcd_puts("   "); 
     lcd_gotoxy(1,1);
@@ -123,7 +143,7 @@ ISR(TIMER1_OVF_vect)
     lcd_gotoxy(8,1);
     lcd_puts("      "); 
     lcd_gotoxy(8,1);
-    lcd_puts(lcd_string);
+    lcd_puts(lcd_string);*/
 
     i++;
 
