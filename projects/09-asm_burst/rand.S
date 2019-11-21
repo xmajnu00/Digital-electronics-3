@@ -89,4 +89,6 @@ burst_asm:
 
     sbi PORTB, 5
     cbi PORTB, 5
+    dec input
+    brne burst_asm
     ret
