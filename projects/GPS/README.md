@@ -13,9 +13,17 @@ Welcome to our project from course BPC-DE2: GPS module communication.
 <br/>
 The main task is to create an application with use of Arduino, GPS module and Nokia 5110 display. Our plan was to make Arduino processor catch NMEA sentences data from the GPS module, parse it into substrings latitude, longitude and time and use them in other extensions - displaying the coordinates and time on Nokia display, sending the coordinates and time in simple form into UART, sending them in form of XLM/KML text strings into UART (so they can be saved in computer and used in Google Maps locating, possibly in real time) and in our navigation tool called "Where is Česká".
 <br/>
+<br/>
 Unfortunately, we managed to make only a part of our plan real. Due to problems with developement of algorithms and lack of special equipment we later found necessary we haven't been able to finish everything we wanted.
 <br/>
+<br/>
 With use of VS Studio and C programming language, the main algorithm for data catching, parsing and displaying was made. In infinite loop, we are catching a character using uart_getc function from Peter Fleury's UART library and we are checking it. When a specific symbol $ is found, we check the next 5 characters (prefix of a NMEA sentence). If prefix equals "GPGGA", the right sentence is caught (for this one includes desired data) and so we save the whole sentence into a string. 
+<br/>
+<br/>
+String is then parsed into subtrings by the strtok_r function from <string.h> library and so the data is now ready to be displayed. Every 4 seconds the timer interrupt is used for converting the latitude, longitude and time data into a decimal value and displaying on the Nokia display. For the conversion we use our own library <NMEA_parse.h>, the display is controlled by <nokia5110.h> library made by Sergey Denisov. 
+<br/>
+<br/>
+Our algorithm is not perfect - the GPGGA sentence is not always caught and desired data is not always available for displaying. In case the timer interrupt activates and the data is not available, 
 
 ## Hardware
 GPS module PA6H (Drotek Electronics) <br/>  Display Nokia 5110 <br/> Microcontroller Arduino UNO (ATmega328P) <br/>
