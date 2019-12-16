@@ -36,7 +36,7 @@ One of our ideas was to develop a XML/KML pseudo-generator, which would be uploa
 <br/>
 <br/>
 
-
+![XML/KML](https://github.com/xmaluc00/Digital-electronics-2/blob/master/projects/GPS/vyvojovydiagram.PNG)
 
 <br/>
 <br/>
