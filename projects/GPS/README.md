@@ -36,8 +36,7 @@ One of our ideas was to develop a XML/KML pseudo-generator, which would be uploa
 <br/>
 <br/>
 
-![XML/KML](https://github.com/xmaluc00/Digital-electronics-2/blob/master/projects/GPS/vyvojovydiagram.PNG)
-
+![XML/KML](https://github.com/xmaluc00/Digital-electronics-2/blob/master/projects/GPS/kml.PNG)
 
 <br/>
 <br/>
@@ -54,7 +53,6 @@ GPS module PA6H (Drotek Electronics) <br/>  Display Nokia 5110 <br/> Microcontro
 
 ## Software
 Microsoft Visual Studio
-Fritzing
 
 ## References
 1. Microchip, [AVR 8-bit Toolchain for Windows, Linux, Mac OS X](https://www.microchip.com/mplab/avr-support/avr-and-arm-toolchains-c-compilers)
