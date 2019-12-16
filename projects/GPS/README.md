@@ -12,7 +12,7 @@
 Welcome to our project from course BPC-DE2: GPS module communication 
 
 ## Hardware
-GPS module PA6H (Drotek Electronics)  Display Nokia 5110  Microcontroller Arduino UNO (ATmega328P)
+GPS module PA6H (Drotek Electronics) <br/>  Display Nokia 5110 <br\> Microcontroller Arduino UNO (ATmega328P)
 
 ## Software
 Microsoft Visual Studio
