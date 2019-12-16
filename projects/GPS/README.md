@@ -53,7 +53,7 @@ GPS module PA6H (Drotek Electronics) <br/>  Display Nokia 5110 <br/> Microcontro
 
 ## Software
 Microsoft Visual Studio <br/>
-Fritzinh 
+Fritzing 
 
 ## References
 1. Microchip, [AVR 8-bit Toolchain for Windows, Linux, Mac OS X](https://www.microchip.com/mplab/avr-support/avr-and-arm-toolchains-c-compilers)
