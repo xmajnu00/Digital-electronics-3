@@ -23,7 +23,7 @@ With use of VS Studio and C programming language, the main algorithm for data ca
 String is then parsed into subtrings by the strtok_r function from <string.h> library and so the data is now ready to be displayed. Every 4 seconds the timer interrupt is used for converting the latitude, longitude and time data into a decimal value and displaying on the Nokia display. For the conversion we use our own library <NMEA_parse.h>, the display is controlled by <nokia5110.h> library made by Sergey Denisov. 
 <br/>
 <br/>
-Our algorithm is not perfect - the GPGGA sentence is not always caught and desired data is not always available for displaying. In case the timer interrupt activates and the data is not available, 
+Our algorithm is not perfect - the GPGGA sentence is not always caught and desired data is not always available for displaying. In case the timer interrupt activates and the data is not available, string "searching" is displayed instead of the substrings with old data. Also, our application suffers from an error, which is causing occasional invalid data displaying. This can be observed from the video. We believe its caused by the speed of data parsing (currently parsed data possibly can be overwrote by the data from next main loop iteration). We tried to solve this by short time UART disabling, unfortunately this did not work. 
 
 ## Hardware
 GPS module PA6H (Drotek Electronics) <br/>  Display Nokia 5110 <br/> Microcontroller Arduino UNO (ATmega328P) <br/>
