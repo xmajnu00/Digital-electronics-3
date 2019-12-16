@@ -29,6 +29,10 @@ Our algorithm is not perfect - the GPGGA sentence is not always caught and desir
 Most of the commercial GPS modules provide an enable pin. We wanted to make use of this in our "data sending to computer" task. Output pin PD4 - GPS enable was intended to be connected with a possible enable pin of a GPS module, its logical level was to be controlled by a button connected to INT0 interrupt pin. By pressing this button we wanted the enable pin to be pulled down to low level, so the GPS would become inactive and the UART bus cleared. After this, the saved latitude, longitude and time data strings could be uploaded to UART data bus (with no risk of UART errors - our Arduino board have only one UART input/output and the case of more devices connected to it at the same time commonly cause errors). Also this part of our code does not seem to work, possibly because of wrong circuitry/mistakes in interrupt code.
 <br/>
 <br/>
+![XML/KML](https://github.com/xmaluc00/Digital-electronics-2/blob/master/projects/GPS/vyvojovydiagram.PNG)
+<br/>
+<br/>
+
 Unfortunately, our attempts of solving the mentioned imperfections no time was left for developement of our extensions.
 <br/>
 <br/>
