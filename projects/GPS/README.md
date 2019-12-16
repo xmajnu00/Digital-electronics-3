@@ -24,8 +24,8 @@ Microsoft Visual Studio
 
 2. Our GitHub repository: https://github.com/xmaluc00/Digital-electronics-2
 
-3. Other sources: \r
-https://github.com/LittleBuster/avr-nokia5110 \r
+3. Other sources: \d
+https://github.com/LittleBuster/avr-nokia5110 /d
 https://navody.arduino-shop.cz/navody-k-produktum/lcd-displej-nokia-5110.html \r
 http://yopero-tech.blogspot.com/ \r
 http://www.tajned.cz/ \r
