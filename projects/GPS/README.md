@@ -36,7 +36,7 @@ One of our ideas was to develop a XML/KML pseudo-generator, which would be uploa
 <br/>
 <br/>
 
-<?xml version="1.0" encoding="UTF-8"?>
+"<?xml version="1.0" encoding="UTF-8"?>"
 <kml xmlns="http://www.opengis.net/kml/2.2">
   <Placemark>
     <name>Simple placemark</name>
