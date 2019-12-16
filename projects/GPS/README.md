@@ -24,6 +24,9 @@ String is then parsed into subtrings by the strtok_r function from <string.h> li
 <br/>
 <br/>
 Our algorithm is not perfect - the GPGGA sentence is not always caught and desired data is not always available for displaying. In case the timer interrupt activates and the data is not available, string "searching" is displayed instead of the substrings with old data. Also, our application suffers from an error, which is causing occasional invalid data displaying. This can be observed from the video. We believe its caused by the speed of data parsing (currently parsed data possibly can be overwrote by the data from next main loop iteration). We tried to solve this by short time UART disabling, unfortunately this did not work. 
+<br/>
+<br/>
+Most of the commercial GPS modules provide an enable pin. We wanted to make use of this in our "data sending to computer" task. Output pin PD4 - GPS enable was intended to be connected with a possible enable pin of a GPS module, its logical level was to be controlled by a button connected to INT0 interrupt pin. By pressing this button we wanted the enable pin to be pulled down to low level, so the GPS would become inactive and the UART bus cleared. After this, the saved latitude, longitude and time data strings could be uploaded to UART data bus (with no risk of UART errors - our Arduino board have only one UART input/output and the case of more devices connected to it at the same time commonly cause errors). Also this part of our code does not seem to work, possibly because of wrong circuitry/mistakes in interrupt code.
 
 ## Hardware
 GPS module PA6H (Drotek Electronics) <br/>  Display Nokia 5110 <br/> Microcontroller Arduino UNO (ATmega328P) <br/>
