@@ -17,7 +17,7 @@ The main task is to create an application with use of Arduino, GPS module and No
 GPS module PA6H (Drotek Electronics) <br/>  Display Nokia 5110 <br/> Microcontroller Arduino UNO (ATmega328P) <br/>
 
 ## Software
-Microsoft Visual Studio
+Microsoft Visual Studio <br/>
 Fritzing
 
 ## References
