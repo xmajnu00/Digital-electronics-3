@@ -26,12 +26,12 @@ Microsoft Visual Studio
 
 3. Other sources: 
 
-  https://github.com/LittleBuster/avr-nokia5110 
+       https://github.com/LittleBuster/avr-nokia5110 
 
-  https://navody.arduino-shop.cz/navody-k-produktum/lcd-displej-nokia-5110.html 
+            https://navody.arduino-shop.cz/navody-k-produktum/lcd-displej-nokia-5110.html 
 
-  http://yopero-tech.blogspot.com/ 
+                   http://yopero-tech.blogspot.com/ 
 
-  http://www.tajned.cz/ 
+                         http://www.tajned.cz/ 
 
 4. Video link: https://www.youtube.com/watch?v=jfIPIAEUn_A&feature=youtu.be
