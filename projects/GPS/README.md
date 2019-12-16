@@ -11,7 +11,7 @@
 ## Introduction
 Welcome to our project from course BPC-DE2: GPS module communication.
 <br/>
-The main task is to create an application with use of Arduino, GPS module and Nokia 5110 display. Our plan was to make Arduino processor catch NMEA sentences data from the GPS module, parse it into substrings latitude, longitude and time and use them in other extensions - displaying the coordinates and time on Nokia display, sending the coordinates and time in simple form into UART, sending them in form of XLM/KML text strings into UART (so they can be saved in computer and used in Google Maps locating, possibly in real time) and in our navigation tool called "Where is Česká".
+The main task was to create an application with use of Arduino, GPS module and Nokia 5110 display. Our plan was to make Arduino processor catch NMEA sentences data from the GPS module, parse it into substrings latitude, longitude and time and use them in other extensions - displaying the coordinates and time on Nokia display, sending the coordinates and time in simple form into UART, sending them in form of XLM/KML text strings into UART (so they can be saved in computer and used in Google Maps locating, possibly in real time) and in our navigation tool called "Where is Česká".
 <br/>
 <br/>
 Unfortunately, we managed to make only a part of our plan real. Due to problems with developement of algorithms and lack of special equipment we later found necessary we haven't been able to finish everything we wanted.
@@ -48,7 +48,13 @@ One of our ideas was to develop a XML/KML pseudo-generator, which would be uploa
 <br/>
 <br/>
 The second of our ideas was to develop a navigation tool called "Where is Česká", a simple compass pointing towards Česká tram stop instead of North. This could be done by implementation of a standard compass using Arduino HMC5883L module - a magnetometer measuring Earth's magnetic lines of force, outputting a direction in angles between our heading and magnetic north. The direction could be displayed on the Nokia display with simple graphics and updated several times a second. To display Česká direction instead of the magnetic North, we could compute a value of an angle between relatively static magnetic North, our dynamic position and static Česká position and subtract it from the North angle with every update. 
+<br/>
+<br/>
 
+![XML/KML](https://github.com/xmaluc00/Digital-electronics-2/blob/master/projects/GPS/ceska1.PNG)
+
+<br/>
+<br/>
 
 
 
