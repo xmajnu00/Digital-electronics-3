@@ -43,7 +43,6 @@ One of our ideas was to develop a XML/KML pseudo-generator, which would be uploa
 ![XML/KML](https://github.com/xmaluc00/Digital-electronics-2/blob/master/projects/GPS/kml.PNG)
 
 <br/>
-<br/>
 -- source: https://developers.google.com/kml/documentation/kml_tut
 <br/>
 <br/>
