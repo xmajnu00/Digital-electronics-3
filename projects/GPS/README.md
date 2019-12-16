@@ -36,23 +36,14 @@ One of our ideas was to develop a XML/KML pseudo-generator, which would be uploa
 <br/>
 <br/>
 
-"<?xml version="1.0" encoding="UTF-8"?>"
-<kml xmlns="http://www.opengis.net/kml/2.2">
-  <Placemark>
-    <name>Simple placemark</name>
-    <description>Attached to the ground. Intelligently places itself 
-       at the height of the underlying terrain.</description>
-    <Point>
-      <coordinates>-122.0822035425683,37.42228990140251,0</coordinates>
-    </Point>
-  </Placemark>
-</kml>
+
 
 <br/>
 <br/>
 -- source: https://developers.google.com/kml/documentation/kml_tut
 <br/>
 <br/>
+The second of our ideas was to develop a navigation tool called "Where is Česká", a simple compass pointing towards Česká tram stop instead of North. This could be done by implementation of a standard compass using Arduino HMC5883L module - a magnetometer measuring Earth's magnetic lines of force, outputting a direction in angles between our heading and magnetic north. The direction could be displayed on the Nokia display with simple graphics and updated several times a second. To display Česká direction instead of the magnetic North, we could compute a value of an angle between relatively static magnetic North, our dynamic position and static Česká position and subtract it from the North angle with every update. 
 
 
 
