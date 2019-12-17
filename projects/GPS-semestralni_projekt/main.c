@@ -1,4 +1,4 @@
-#include <stdlib.h>         // itoa() function
+#include <stdlib.h>         
 #include <stdio.h>
 #include <avr/io.h>
 #include <avr/interrupt.h>
@@ -6,21 +6,21 @@
 #include <math.h>
 #include "timer.h"
 #include "uart.h"
-#include "nokia5110.h"
+#include "nokia5110.h"                                                  //display library
 #include "gpio.h"
-#include "GPS_parsing.h"
+#include "GPS_parsing.h"                                                //gps parsing library (our)
 
 
-#define UART_BAUD_RATE 9600
-#define INT_PIN PD2
-#define GPS_enable PD4
+#define UART_BAUD_RATE 9600                                             //defines
+#define INT_PIN PD2                                                     //button interrupt
+#define GPS_enable PD4                                                  //connect to enable pin of GPS module          
 
 
-char znak;
+char symbol;        
 volatile uint8_t i = 0;
 volatile uint8_t end = 0;
 volatile uint8_t searching = 1;
-volatile uint8_t continuing = 1;
+volatile uint8_t Continue = 1;                                          //in flowchart named as "pokracuj"
 
 char NMEA[72];
 char *NMEA_parse[6];
@@ -35,29 +35,29 @@ double time;
 int main(void)
 {
 
-    EICRA = 0b00000000;   
-	  EIMSK = 0b00000001;
+    // EICRA = 0b00000000;   
+	//   EIMSK = 0b00000001;
 
-    DDRD &= ~_BV(INT_PIN);
-    DDRD |= _BV(GPS_enable);
-    PORTD |= _BV(GPS_enable);
+    // DDRD &= ~_BV(INT_PIN);
+    // DDRD |= _BV(GPS_enable);
+    // PORTD |= _BV(GPS_enable);
 
-    TIM_config_prescaler(TIM1, TIM_PRESC_1024);
+    TIM_config_prescaler(TIM1, TIM_PRESC_1024);                         //prescaler- four seconds
     TIM_config_interrupt(TIM1, TIM_OVERFLOW_ENABLE);
 
     uart_init(UART_BAUD_SELECT(UART_BAUD_RATE, F_CPU));
-    nokia_lcd_init();
+    nokia_lcd_init();                                                   //initializing display
 
     sei();
 
 
-    while(1){
+    while(1){                                                           //searching for right NMEA sentence
         
-         while (!(UCSR0A & (1<<RXC0))){
+         while (!(UCSR0A & (1<<RXC0))){                                 //when data register is not empty
 
-            znak = uart_getc();
+            symbol = uart_getc();
 
-            if (znak == '$'){
+            if (symbol == '$'){                                         // when symbol is dollar, catch sentence
 
                 while(1){
                     
@@ -66,7 +66,7 @@ int main(void)
                     i++;
 
                     if(i==70){
-                        continuing = 0;
+                        Continue = 0;
                         break;
                     }             
 
@@ -77,7 +77,7 @@ int main(void)
                 i = 0;
                 
                 
-                if (strstr(NMEA,"GPGGA") != NULL){
+                if (strstr(NMEA,"GPGGA") != NULL){                      //if sentence includes "GPGGA" prefix, tokenize the sentence
 
                     char* token; 
                     char* rest = NMEA;
@@ -99,7 +99,7 @@ int main(void)
                     i = 0;
                     searching = 0;
                     NMEA[0] = '\0';
-                    while (continuing != 1);
+                    while (Continue != 1);
                     break;
 
                 }
@@ -110,7 +110,7 @@ int main(void)
                     i = 0;
                     NMEA[0] = '\0';
                     searching = 1;
-                    while (continuing!= 1);
+                    while (Continue!= 1);
                     break;
                     
                 }
@@ -128,15 +128,15 @@ int main(void)
     // for (;;) {
     // }    
     
-    nokia_lcd_write_string("end", 1); 
-    nokia_lcd_render();
+    nokia_lcd_write_string("end", 1);                                        //string writing
+    nokia_lcd_render();                                                      //string display on Nokia 5110 module
     
     return (0);
 }
 
 
 
-ISR(TIMER1_OVF_vect)
+ISR(TIMER1_OVF_vect)                                                        //graphic output changes every four seconds
 {
     nokia_lcd_clear();
 
@@ -152,7 +152,7 @@ ISR(TIMER1_OVF_vect)
 
     else {
         nokia_lcd_write_string("Lat.: ", 1);
-        latitude_parse_print(lat,lat_h);     
+        latitude_parse_print(lat,lat_h);                                    //using parsing function from NMEA_parse library     
         nokia_lcd_set_cursor(0, 8);
         nokia_lcd_write_string("Lon.: ", 1); 
         longitude_parse_print(lon,lon_h);
@@ -162,19 +162,19 @@ ISR(TIMER1_OVF_vect)
         }
 
         searching = 1;
-        continuing= 1;
+        Continue= 1;
         return;
 }
 
 
-ISR(INT0_vect){
+// ISR(INT0_vect){                                                          //attempt to make a data sending to computer while disabling GPS
 
-    TIM_config_interrupt(TIM1, TIM_OVERFLOW_DISABLE);    
-    PORTD &= ~_BV(GPS_enable);  
-    uart_puts(NMEA_parse[2]);
-    PORTD |= _BV(GPS_enable); 
-    TIM_config_interrupt(TIM1, TIM_OVERFLOW_ENABLE);  
+//     TIM_config_interrupt(TIM1, TIM_OVERFLOW_DISABLE);    
+//     PORTD &= ~_BV(GPS_enable);  
+//     uart_puts(NMEA_parse[2]);
+//     PORTD |= _BV(GPS_enable); 
+//     TIM_config_interrupt(TIM1, TIM_OVERFLOW_ENABLE);  
 
  
-}
+// }
 
