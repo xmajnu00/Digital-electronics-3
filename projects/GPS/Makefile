@@ -32,7 +32,7 @@ ASSRC := $(wildcard *.S)
 ##
 ## You should not have to change anything below here
 ##
-
+##
 # This is called as substitution reference. In this case, if SRCS has
 # values 'foo.c bar.c', OBJS variable will have 'foo.o bar.o'.
 OBJS := $(SRCS:%.c=%.o)
