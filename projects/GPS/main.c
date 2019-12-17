@@ -18,9 +18,9 @@
 
 char znak;
 volatile uint8_t i = 0;
-volatile uint8_t konec = 0;
-volatile uint8_t vyhledavam = 1;
-volatile uint8_t pokracuj = 1;
+volatile uint8_t end = 0;
+volatile uint8_t searching = 1;
+volatile uint8_t continuing = 1;
 
 char NMEA[72];
 char *NMEA_parse[6];
@@ -66,7 +66,7 @@ int main(void)
                     i++;
 
                     if(i==70){
-                        pokracuj = 0;
+                        continuing = 0;
                         break;
                     }             
 
@@ -95,22 +95,22 @@ int main(void)
                     time = atof(NMEA_parse[1]);
 
 
-                    konec = 1;
+                    end = 1;
                     i = 0;
-                    vyhledavam = 0;
+                    searching = 0;
                     NMEA[0] = '\0';
-                    while (pokracuj != 1);
+                    while (continuing != 1);
                     break;
 
                 }
 
                 else{
 
-                    //konec = 1;
+                    //end = 1;
                     i = 0;
                     NMEA[0] = '\0';
-                    vyhledavam = 1;
-                    while (pokracuj != 1);
+                    searching = 1;
+                    while (continuing!= 1);
                     break;
                     
                 }
@@ -119,7 +119,7 @@ int main(void)
 
         }
 
-        //if (konec == 1){konec = 0; break;}
+        //if (end == 1){end = 0; break;}
 
     }
 
@@ -128,7 +128,7 @@ int main(void)
     // for (;;) {
     // }    
     
-    nokia_lcd_write_string("konec", 1); 
+    nokia_lcd_write_string("end", 1); 
     nokia_lcd_render();
     
     return (0);
@@ -140,7 +140,7 @@ ISR(TIMER1_OVF_vect)
 {
     nokia_lcd_clear();
 
-    if (vyhledavam == 1){
+    if (searching == 1){
         nokia_lcd_write_string("Lat.:Searching ", 1);   
         nokia_lcd_set_cursor(0, 8);
         nokia_lcd_write_string("Lon.:Searching", 1);
@@ -161,8 +161,8 @@ ISR(TIMER1_OVF_vect)
         time_parse_print(time);
         }
 
-        vyhledavam = 1;
-        pokracuj = 1;
+        searching = 1;
+        continuing= 1;
         return;
 }
 
